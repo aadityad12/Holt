@@ -21,7 +21,8 @@ the network in front of it can be replaced later.
 
 ## Status
 
-Early planning. See the [issues](https://github.com/aadityad12/Holt/issues)
+Early planning. See the [roadmap](docs/roadmap.md), including the ideas we are
+not doing yet and why, and the [issues](https://github.com/aadityad12/Holt/issues)
 and [milestones](https://github.com/aadityad12/Holt/milestones) for the plan.
 
 ## License
