@@ -21,9 +21,39 @@ the network in front of it can be replaced later.
 
 ## Status
 
-Early planning. See the [roadmap](docs/roadmap.md), including the ideas we are
-not doing yet and why, and the [issues](https://github.com/aadityad12/Holt/issues)
-and [milestones](https://github.com/aadityad12/Holt/milestones) for the plan.
+Not usable yet. This repository is being bootstrapped — see the
+[roadmap](docs/roadmap.md), including the ideas we are not doing yet and why,
+and the [issues](https://github.com/aadityad12/Holt/issues) and
+[milestones](https://github.com/aadityad12/Holt/milestones) for the plan.
+
+## Development
+
+Prerequisites: Node.js matching [`.nvmrc`](.nvmrc) and `pnpm`.
+
+```bash
+pnpm install
+pnpm dev
+```
+
+`pnpm dev` starts the server placeholder and the Vite dev server for the web
+app.
+
+Useful workspace checks:
+
+```bash
+pnpm -r typecheck
+pnpm lint
+pnpm -r test
+pnpm -r build
+```
+
+## Security
+
+Security documentation and the threat model are planned in `docs/`.
+
+Never commit tokens, cookies, or credentials to this repository or include them
+in test fixtures or logs. See [CONTRIBUTING.md](CONTRIBUTING.md) for
+contributor rules.
 
 ## License
 
