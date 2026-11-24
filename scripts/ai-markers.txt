@@ -1,0 +1,30 @@
+# AI attribution patterns checked by scripts/check-attribution.mjs.
+#
+# The plain markers below mirror AI_MARKERS in the oss-scout repo's
+# scout/briefings.py ("generated with" and the robot emoji). Unlike oss-scout,
+# which rejects any "co-authored-by" line, this repo accepts outside human
+# contributors and only rejects Co-Authored-By lines whose name or email names
+# an AI tool or vendor.
+
+[plain]
+generated with
+🤖
+
+[co-author]
+claude
+anthropic
+openai
+codex
+copilot
+cursor
+gemini
+kiro
+grok
+chatgpt
+deepseek
+windsurf
+codeium
+tabnine
+noreply@anthropic.com
+noreply@openai.com
+copilot@github.com
