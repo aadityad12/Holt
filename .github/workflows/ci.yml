@@ -33,6 +33,12 @@ jobs:
       - name: Test
         run: pnpm -r test
 
+      - name: Shellcheck deploy scripts
+        run: shellcheck deploy/*.sh
+
+      - name: Test deploy files
+        run: python3 -m unittest discover -s deploy/tests
+
       - name: Build
         run: pnpm -r build
 
