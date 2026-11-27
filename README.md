@@ -49,7 +49,8 @@ pnpm -r build
 
 ## Security
 
-Security documentation and the threat model are planned in `docs/`.
+See the [threat model](docs/threat-model.md) for what Holt protects, its trust
+boundaries, and known residual risks.
 
 Never commit tokens, cookies, or credentials to this repository or include them
 in test fixtures or logs. See [CONTRIBUTING.md](CONTRIBUTING.md) for
