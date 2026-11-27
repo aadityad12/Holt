@@ -1,0 +1,39 @@
+#!/usr/bin/python3 -I
+"""Run the oss-scout guard hook only for the agent Unix user.
+
+Installed by deploy/provision.sh as /usr/local/lib/holt/guard/run-guard
+(root:root, 0755) and referenced from /etc/claude-code/managed-settings.d/.
+
+Running in isolated mode (-I) from an absolute path prevents PATH, PYTHONPATH,
+or user site-packages (.pth) files from bypassing the hook. Checking the
+effective UID ensures the owner's own Claude Code sessions on the same host
+keep working while every session under the agent user is strictly guarded.
+"""
+
+import os
+import pwd
+import sys
+
+GUARD_USER = "agent"
+PYTHON_BIN = "/usr/bin/python3"
+GUARD_SCRIPT = "/usr/local/lib/holt/guard/guard.py"
+
+
+def should_enforce(euid: int, target_user: str = GUARD_USER) -> bool:
+    """Return True if euid belongs to target_user, failing closed if lookup fails."""
+    try:
+        target_uid = pwd.getpwnam(target_user).pw_uid
+    except KeyError:
+        return True
+    return euid == target_uid
+
+
+def main() -> int:
+    if not should_enforce(os.geteuid()):
+        return 0
+    os.execv(PYTHON_BIN, [PYTHON_BIN, "-I", GUARD_SCRIPT, "--profile", "agent"])
+    return 2
+
+
+if __name__ == "__main__":
+    sys.exit(main())
