@@ -49,8 +49,8 @@ pnpm -r build
 
 ## Security
 
-See the [threat model](docs/threat-model.md) for what Holt protects, its trust
-boundaries, and known residual risks.
+See the [threat model](docs/threat-model.md) for what Holt is designed to
+protect, its planned trust boundaries, and known residual risks.
 
 Never commit tokens, cookies, or credentials to this repository or include them
 in test fixtures or logs. See [CONTRIBUTING.md](CONTRIBUTING.md) for
