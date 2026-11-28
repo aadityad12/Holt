@@ -13,7 +13,7 @@
     "typecheck": "pnpm -r typecheck",
     "lint": "eslint . && prettier --check .",
     "format": "prettier --write .",
-    "test": "pnpm -r test && node --test scripts/tests/check-attribution.test.mjs"
+    "test": "pnpm -r test && node --test scripts/tests/check-attribution.test.mjs && python3 -m unittest discover -s deploy/tests"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

@@ -1,0 +1,50 @@
+#!/usr/bin/python3 -I
+"""The one bridge from the holt user to the agent user.
+
+The holt user may run only this file as agent, through the sudo rule in
+/etc/sudoers.d/holt-agentctl. Every argument is checked here against a strict
+pattern, and nothing is ever passed to a shell.
+
+Subcommands:
+    ping    print the name of the user this runs as (it should be "agent")
+"""
+
+import os
+import pwd
+import re
+import sys
+
+USAGE = "usage: agentctl ping"
+SUBCOMMAND = re.compile(r"[a-z][a-z0-9-]{0,31}")
+MAX_ARGS = 16
+
+
+def fail(message: str) -> int:
+    print(f"agentctl: {message}", file=sys.stderr)
+    print(USAGE, file=sys.stderr)
+    return 2
+
+
+def cmd_ping(args: list[str]) -> int:
+    if args:
+        return fail("ping takes no arguments")
+    print(pwd.getpwuid(os.geteuid()).pw_name)
+    return 0
+
+
+COMMANDS = {"ping": cmd_ping}
+
+
+def main(argv: list[str]) -> int:
+    if not argv:
+        return fail("missing subcommand")
+    if len(argv) > MAX_ARGS:
+        return fail("too many arguments")
+    name, args = argv[0], argv[1:]
+    if not SUBCOMMAND.fullmatch(name) or name not in COMMANDS:
+        return fail("unknown subcommand")
+    return COMMANDS[name](args)
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))

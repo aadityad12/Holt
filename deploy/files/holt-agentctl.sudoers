@@ -1,0 +1,3 @@
+# Installed by deploy/provision.sh as /etc/sudoers.d/holt-agentctl.
+# The holt user may run exactly one program as agent, and nothing else.
+holt ALL=(agent) NOPASSWD: /usr/local/libexec/holt/agentctl *
